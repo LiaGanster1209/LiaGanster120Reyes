@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog de Administración | Gestión de Proyectos</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+         
+        :root{
+            --primary-pink: #6b5aa8;
+            --light-pink: #16d5f7;
+            --dark-pink: #0d0d0e;
+            --background-pink:  #313131;
+
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--background-pink);
+            line-height: 1.6;
+        }
+
+        .hero-header {
+            position: relative;
+            height: 500px;
+            /* color: rgb(119, 115, 116)  # 54278; */  /* Se elimina esta línea incorrecta */
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(rgba(77, 76, 76, 0.048), rgba(245, 242, 242, 0.986)),
+                        url('https://media.istockphoto.com/id/1387793622/es/foto/sala-de-reuniones-de-negocios-o-sala-de-junta-interior.jpg?s=1024x1024&w=is&k=20&c=NzbQkRZvbpditW5jUKg5ps25G2PtV0NofdndiqqkHS0=') center/cover;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            /* text-shadow: 2px 2px 4px rgba(243, 244, 245, 0.986); */  /* Si quieres quitar la sombra de texto, comenta esta línea */
+        }
+        
+
+        .hero-content {
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(243, 244, 245, 0.986);
+        }
+
+        nav {
+            background: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 2px 10px rgba(248, 244, 244, 0.952);
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--dark-pink);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background: var(--light-pink);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 2rem;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.3s ease;
+        }
+
+        .article-content {
+            padding: 2rem;
+        }
+
+        .article-card:hover .article-image {
+            transform: scale(1.05);
+        }
+
+        .article-card h2 {
+            color: var(--dark-pink);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar-widget {
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: var(--light-pink);
+            color: var(--dark-pink);
+            border-radius: 15px;
+            margin: 0.2rem;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background: var(--dark-pink);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="hero-header">
+        <div class="hero-content">
+            <h1>Administracion & Gestion Empresarial</h1>
+            <p>Materia: Administración De Empresas </p>
+            <p>Institución: Instituto Tecnológico de Huejutla </p>
+            <p>Maestra: Maria Guadalupe Rivera </p>
+            <p> Alumna: Cecilia Reyes Hernandez </p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <ul class="nav-links">
+                <li><a href="#fundamentos">Fundamentos</a></li>
+                <li><a href="#metodologia">Metodología</a></li>
+                <li><a href="#etapas">Etapas</a></li>
+                <li><a href="#procesos">Procesos</a></li>
+                <li><a href="#características">características</a></li>
+                <li><a href="#concluciones"> Conclusiónes</a></li>
+                   </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <main>
+            <article id="fundamentos" class="article-card">
+                <div class="article-image" style="background-image: url('https://media.istockphoto.com/id/1262684322/es/foto/el-ajedrez-del-rey-dorado-est%C3%A1-frente-a-otras-piezas-de-ajedrez-concepto-de-planificaci%C3%B3n-de.jpg?s=1024x1024&w=is&k=20&c=qJfSQ2mw0bbQ5djNa8psOnKHfx1xmgWVuOhyFHRP9bo=')"></div>
+                <div class="article-content">
+                    <h2>Fundamentos de la Administración</h2>
+                    <div class="tags">
+                        <span class="tag">Teoría</span>
+                        <span class="tag">Gestión</span>
+                    </div>
+                    <p>La administración es el proceso sistemático de planificar, organizar, dirigir y controlar los recursos y actividades de una organización para lograr objetivos específicos de manera eficiente y eficaz La administración se ha vuelto una práctica indispensable para todo procedimiento que se ejecute dentro de las empresas, en la vida personal, la vida estudiantil y dentro de cualquier otra área en donde se pueda implementar. Si esto es posible, es gracias a todos los personajes que han impactado significativamente en esta ciencia, a los cuales mencionaremos más adelante, Pero antes de tomar los fundamentos de la administración queremos explicarte en qué consiste esta, así que no dudes en seguir leyendo hasta el final para aprender más sobre esta increíble práctica.</p>
+                    
+                    <h3>Elementos Fundamentales:</h3>
+                    <ul>
+                        <li>Planeación Estratégica</li>
+                        <li>Organización de Recursos</li>
+                        <li>Dirección de Personal</li>
+                        <li>Control y Evaluación</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article id="metodologia" class="article-card">
+                <div class="article-image" style="background-image: url('https://media.istockphoto.com/id/1347612919/es/foto/hombre-trabajando-en-gr%C3%A1ficos-de-crecimiento-financiero-invertir-an%C3%A1lisis.jpg?s=1024x1024&w=is&k=20&c=G_oqWIYxbOdI9AwGOApGkShgnK_7mueFVa8FMvoJp18=')"></div>
+                <div class="article-content">
+                    <h2>Metodología de Proyectos</h2>
+                    <div class="tags">
+                        <span class="tag">PMBOK</span>
+                        <span class="tag">Agile</span>
+                    </div>
+                    <p>Las metodologías de gestión de proyectos son un conjunto de teorías, técnicas y procedimientos que ayudan a las organizaciones a estandarizar cómo una idea se convierte en realidad. Por definición, su objetivo es simplificar este proceso para que los involucrados hagan más cosas con menos tiempo, esfuerzo y gastos.
+
+                        El concepto de metodologías de gestión de proyectos abarca desde las etapas de ideación y ejecución hasta la evaluación de resultados y mejora continua de procesos. Por lo tanto, se considera una excelente herramienta para reducir la incertidumbre, la presión y los riesgos en la implementación de un plan.</p>
+
+                        <p> ¿Para qué sirven las metodologías de gestión de proyectos?</p>
+
+
+                           <p>En cuanto a sus aplicaciones, las metodologías de gestión de proyectos sirven para estandarizar el flujo de trabajo, mejorar la comunicación del equipo, optimizar el uso de los recursos y facilitar la toma de decisión informada.
+
+                            Estandarizar el flujo de trabajo
+                            ¿Sientes que empiezas de cero cada vez que gestionas un proyecto? Quizás planifiques mientras ejecutas o incluso te adaptes a medida que suceden las cosas. En cualquier caso, esto es un problema, porque pierdes tiempo, energía y, a veces, dinero al no tener una ruta clara a seguir a la hora de tomar las riendas de una iniciativa.
+                            
+                            Con metodologías de gestión, puedes estandarizar el flujo de trabajo y facilitar la ejecución de todas las etapas del ciclo de vida de un proyecto. Y los resultados son excelentes: mejoras la productividad, mantienes feliz a tu equipo y mitigas el estrés administrativo.</p> 
+                    
+                    <h3>Principales Metodologías:</h3>
+                    <ul>
+                        <li>PMBOK (Project Management Body of Knowledge)</li>
+                        <li>Metodologías Ágiles (Scrum, Kanban)</li>
+                        <li>Metodología Waterfall</li>
+                        <li>Metodologías Híbridas</li>
+                    </ul>
+                </div>
+            </article>
+
+            <article id="etapas" class="article-card">
+                <div class="article-image" style="background-image: url('https://media.istockphoto.com/id/909565912/es/foto/cerca-mano-de-marketing-jefe-empleado-se%C3%B1alando-en-el-documento-de-negocio-durante-la-discusi%C3%B3n.jpg?s=1024x1024&w=is&k=20&c=VObnTvM4yXHBinTehOGH3lFsxiLH8t3kw5IERc0fcuk=')"></div>
+                <div class="article-content">
+                    <h2>Etapas de la Administración</h2>
+                    <div class="tags">
+                        <span class="tag">Procesos</span>
+                        <span class="tag">Fases</span>
+                    </div>
+                    <p>¿Cuáles son las fases de la administración de proyectos?</p>
+
+                      <p> Un proyecto es una secuencia de tareas, con un principio y un final, limitada por el tiempo, los recursos y los resultados deseados. Con base a esto, cuando hablamos de gestión de proyectos, debemos tener en cuenta una serie de fases para llevar a cabo una correcta administración:.</p>
+                    
+                    <h3>Etapas Principales:</h3>
+                    <ul>
+                        <li> 1.- Inicio : </li>
+                        <p> En esta primera etapa se hace un reconocimiento para evaluar si un proyecto puede llevarse a cabo. Se determina lo que el proyecto debe lograr, se define la meta global de este y las expectativas generales de los clientes, de la administración o de los interesados. Además, se precisa el alcance general del proyecto y se selecciona a los miembros iniciales del equipo.</p>
+                        <li> 2.-Planeación:</li>
+                        <p> Se realiza un perfeccionamiento del alcance del proyecto, listado de tareas y actividades que llevarán al logro de las metas. Se programa una secuencia de actividades, se desarrolla un calendario y un presupuesto para conseguir que el plan sea aprobado.</p>
+                        <li>3.-Ejecución</li>
+                        <p> Involucra dirigir el equipo, reunirse con sus miembros, comunicarse con los terceros involucrados y resolver los conflictos o problemas que puedan surgir. Además, se aseguran los recursos necesarios, ya sea dinero, personal, equipo, tiempo, etc.</p>
+                        <li>4.- Control</li>
+                        <p> En esta cuarta etapa se vigilan las desviaciones del plan para emprender acciones correctivas, evaluar cambios en los proyectos solicitados, cambiar los calendarios del proyecto y adaptar los niveles de recursos. También se puede modificar el alcance y regresar a la etapa de planeación para hacer ajustes.</p>
+                        <li> 5.- Conclusión</li>
+                        <p> En la última fase, se reconocen los logros y resultados, se da un cierre de las operaciones y dispersión del equipo, es una etapa de aprendizaje de la experiencia del proyecto. Se revisa el proceso y por último se elabora el informe final.</p>
+                    </ul>
+                </div>
+            </article>
+
+            <article id="procesos" class="article-card">
+                <div class="article-image" style="background-image: url('https://media.istockphoto.com/id/1321009397/es/foto/dos-atractivas-empresarias-se-dan-la-mano-en-el-lugar-de-trabajo-de-la-oficina.jpg?s=1024x1024&w=is&k=20&c=d_kV-ImNyyCwW6nqT0i9Pc1lZx4NU27GjX-5ZVe1iNg=')"></div>
+                <div class="article-content">
+                    <h2>Procesos y Control Empresarial</h2>
+                    <div class="tags">
+                        <span class="tag">Control</span>
+                        <span class="tag">Gestión</span>
+                    </div>
+                    <li> ¿Qué es el control en una empresa?</li>
+                    
+                    <p> El control en una empresa es una de las etapas del proceso administrativo. Se relaciona con el uso adecuado de los recursos, el cumplimiento de los objetivos de la empresa y la protección de sus intereses.
+
+                        Según Henri Fayol, creador de la teoría clásica de administración, el control consiste en verificar que todo se realice de acuerdo con el plan adoptado, las órdenes dadas y los principios establecidos.
+                        
+                        Entonces, ¿qué es el control en una empresa? En el ámbito empresarial, el control es un proceso que permite evaluar el desempeño con el fin de identificar y corregir desviaciones o errores que puedan interferir en el logro de los objetivos de la empresa.
+                        
+                        Un sistema de control no se aplica solo a las grandes empresas</p>
+
+                    
+                    <h3>Elementos del Control:</h3>
+                    <ul>
+                        <li>1.- los riesgos</li>
+                        <p> La implementación de actividades de control permite identificar posibles riesgos y tomar las medidas necesarias para minimizar su impacto. </p>
+
+                        <li>2.- Brinda información para la toma de decisiones</li>
+                        <p> Contar con información confiable y oportuna sobre el desempeño de una empresa ayuda a tomar mejores decisiones estratégicas.</p>
+
+                        <li>3.- Aumenta la eficiencia de las operaciones</li>
+                        <p> Un sistema de control permite identificar errores y corregir desviaciones que puedan interferir con el desarrollo de las actividades y con el cumplimiento de las metas establecidas.</p>
+
+                        <li>4.-Optimiza el uso de los recursos</li>
+                        <p> Un adecuado control interno permite reducir costos y hacer un mejor uso de los recursos materiales, como los equipos y la planta física.</p>
+
+                       <li> 5.- Asegura el cumplimiento de las reglas y políticas empresariales</li> 
+
+                       <p> El monitoreo continuo de las diferentes operaciones asegura que los procesos se realicen de acuerdo a las leyes y políticas empresariales vigentes, lo cual reduce el riesgo de infracciones y sus consecuencias.
+mal de 
+                        Ahora ya sabes qué es el control en una empresa, cuáles son sus beneficios y cómo pueden ayudarte a aumentar la productividad. Es momento de conocer la estructura de un sistema de control.</p>
+                    </ul>
+                </div>
+
+                <div class="container">
+                    <main>
+                        <article id="características" class="article-card">
+                            <div class="article-image" style="background-image: url('https://media.istockphoto.com/id/1432713449/es/foto/datos-del-informe-financiero-del-balance-de-operaciones-comerciales-y-la-cuenta-de-resultados.jpg?s=1024x1024&w=is&k=20&c=SDMfO6glt7W-FE8L81fCTJixJX9tm01u5duAI5vHDeo=')"></div>
+                            <div class="article-content">
+                                <h2>características</h2>
+                                <div class="tags">
+                                    <span class="tag">Teoría</span>
+                                    <span class="tag">Gestión</span>
+                                </div>
+                                <li> características de una empreza</li>
+
+                                <li> ¿Qué es una pequeña y mediana empresa?</li>
+                                <p> Las compañías se clasifican, dependiendo de su tamaño, en las siguientes categorías:</p>
+
+                                    <li> 1.- Pequeñas empresas</li>
+                                    <li> 2.-Medianas empresas </li>
+                                    <li> 3.-Grandes empresas</li>
+
+                                   <p>Para la clasificación son tomados en cuenta los empleados de la empresa, su facturación y sus activos. De estos, el número de empleados es el criterio más habitual, a pesar de que algunos economistas argumenten que la facturación es una medida más apropiada para determinar el tamaño relativo de una empresa.</p>
+            </article>
+        </main>
+
+        <aside class="sidebar">
+            <div class="sidebar-widget">
+                <h3>Recursos Destacados</h3>
+                <ul>
+                    <li>Guía PMBOK</li>
+                    <li>Certificaciones PMI</li>
+                    <li>Herramientas de Gestión</li>
+                </ul>
+            </div>
+
+            <div class="sidebar-widget">
+                <h3>Temas Relacionados</h3>
+                <div class="tags">
+                    <span class="tag">Gestión</span>
+                    <span class="tag">Liderazgo</span>
+                    <span class="tag">Innovación</span>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+<div>
+
+    <footer>
+        <div class="footer-content">
+            <div>
+                <h3>Sobre el Blog</h3>
+                <p>Blog educativo indusido al estudio y orientado a la materia de administración de emprezas .</p>
+            </div>
+            <div>
+                <h3>Contacto</h3>
+                <p>Email: Ceciliareyeshernandez45@gmail.com</p>
+            </div>
+            <div>
+                <h3>Redes Sociales</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div> 
+
+            </div>
+            <h3>Enlaces útiles</h3>
+            <ul>
+                <li><a href="#">Política de privacidad</a></li>
+                <li><a href="#">Términos de servicio</a></li>
+                <li><a href="#">Contacta con nosotros</a></li>
+            </ul>
+            </div>
+        
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

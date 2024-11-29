@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>MATRIX ACCESS</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+            font-family: 'Courier New', monospace;
+        }
+        #matrix-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        .login-overlay {
+            position: relative;
+            z-index: 10;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+        }
+        .matrix-text {
+            color: #00FF41;
+            text-shadow: 0 0 10px #00FF41;
+        }
+        .glitch {
+            position: relative;
+            animation: glitch 1s linear infinite;
+        }
+        @keyframes glitch {
+            2%, 64% { transform: translate(2px, 0) skew(0deg); }
+            4%, 60% { transform: translate(-2px, 0) skew(0deg); }
+            62% { transform: translate(0, 0) skew(5deg); }
+        }
+        #access-btn {
+            background: linear-gradient(to right, #00FF41, #008F11);
+            transition: all 0.3s ease;
+        }
+        #access-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px #00FF41;
+        }
+        .cyber-input {
+            border: 2px solid #FF1493;
+            box-shadow: 0 0 10px #FF1493;
+        }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+    <canvas id="matrix-container"></canvas>
+    
+    <div class="login-overlay absolute w-full max-w-md p-8 rounded-xl">
+        <h1 class="text-5xl text-center matrix-text glitch mb-12 uppercase">
+            Identificate  
+        </h1>
+        
+        <div class="space-y-6">
+            <input 
+                type="text" 
+                id="username"
+                placeholder="ID DEL PROPIETARIO" 
+                class="w-full p-4 bg-transparent cyber-input text-green-300 matrix-text text-xl focus:outline-none"
+            >
+            
+            <button 
+                id="access-btn"
+                class="w-full p-4 text-black text-2xl font-bold matrix-text border-none"
+            >
+                INFILTRAR SISTEMA
+            </button>
+        </div>
+        
+        <div id="system-status" class="mt-6 text-center matrix-text text-sm">
+            // SISTEMA DE HACKEO PREPARADO
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('matrix-container');
+        const ctx = canvas.getContext('2d');
+        
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const characters = 'HACK3R1NF0*#@MATRIX0123456789CYBER';
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+
+        const rainDrops = [];
+        for (let x = 0; x < columns; x++) {
+            rainDrops[x] = Math.floor(Math.random() * canvas.height);
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#FF1493';
+            ctx.font = fontSize + 'px monospace';
+            
+            for (let i = 0; i < columns; i++) {
+                const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+                
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+                rainDrops[i]++;
+            }
+        }
+
+        function animateMatrix() {
+            drawMatrix();
+            requestAnimationFrame(animateMatrix);
+        }
+
+        animateMatrix();
+
+        const accessBtn = document.getElementById('access-btn');
+        const usernameInput = document.getElementById('username');
+        const systemStatus = document.getElementById('system-status');
+
+        accessBtn.addEventListener('click', () => {
+            const username = usernameInput.value.toLowerCase();
+            
+            if (username === 'cecilia') {
+                systemStatus.textContent = '// ACCESO AUTORIZADO: SISTEMA COMPROMETIDO';
+                systemStatus.style.color = '#00FF41';
+                accessBtn.style.background = 'linear-gradient(to right, #008F11, #00FF41)';
+                
+                setTimeout(() => {
+                    // Redirección al blog (sustituye con tu URL real)
+                    window.location.href = 'http://127.0.0.1:5500/ProyectoAdministracion/intex.html';
+                }, 2000);
+            } else {
+                systemStatus.textContent = '// ACCESO DENEGADO: FIREWALL ACTIVADO';
+                systemStatus.style.color = '#FF1493';
+                accessBtn.style.background = 'linear-gradient(to right, #FF4500, #FF1493)';
+            }
+        });
+    </script>
+</body>
+</html>
