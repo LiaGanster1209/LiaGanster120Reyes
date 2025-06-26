@@ -1,0 +1,47 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <title>Detector de movimientos</title>
+</head>
+
+<body>
+    <h2>Detector de movimientos con cámara</h2>
+    <video id="video" autoplay playsinline></video>
+
+    <script>
+        const video = document.getElementById("video");
+
+        // Acceder a la cámara 
+        navigator.mediaDevices.getUser Media({ video: true })
+            .then((stream) => {
+                video.srcObject = stream;
+
+                const canvas = document.createElement("canvas");
+                const context = canvas.getContext("2d");
+
+                setInterval(() => {
+                    canvas.width = video.videoWidth; 
+                    canvas.height = video.videoHeight;
+                    context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+                    // Capturar frame y enviarlo al servidor 
+                    canvas.toBlob((blob) => {
+                        const formData = new FormData();
+                        formData.append("frame", blob);
+
+                        fetch("https://localhost:5000/detect", {
+                            method: "POST",
+                            body: formData,
+                        });
+                    }, "image/jpeg");
+                }, 500); // cada medio segundo 
+            })
+            .catch((error) => {
+                console.error("Error al acceder a la cámara", error);
+            });
+    </script>
+</body>
+</html>
